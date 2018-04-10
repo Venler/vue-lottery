@@ -1,13 +1,13 @@
 <template>
 	<div class="wraper">
 		<div class="lotterybg">
-			<img src="./images/turnplate-bg.png">
+			<img :src="lotterybg">
 		</div>
-		<div class="lotteryContent">
-			<img v-bind:style="{ transform: 'rotate3d(0,0,1,'+angle+'deg)'}" id="turntable" src="./images/turntable.png">
+		<div class="lotteryContent" :style="{width:lotterywidth[0]}">
+			<img v-bind:style="{ transform: 'rotate3d(0,0,1,'+angle+'deg)'}" id="turntable" :src="contentBg">
 		</div>
-		<div class="pointer" @click="clickLottery">
-			<img src="./images/pointer.png">
+		<div class="pointer" :style="{width:lotterywidth[1]}" @click="clickLottery">
+			<img :src="pointerbg">
 		</div>
 	</div>
 </template>
@@ -18,20 +18,51 @@ export default {
 		return {
 			angle: this.lotteryAngle,//初始度数
 			flag: this.lotteryFlag,//转盘开关
-			acceleration: this.lotteryAcceleration,//加速的加速度0.5
-			r_acceleration: this.lotteryRacceleration,//减速的加速度0.1
-			firstTimes: this.lotteryFirsttimes,//48次
+			acceleration: 0.5,//加速的加速度0.5
+			r_acceleration: 0.1,//减速的加速度0.1
+			firstTimes: 48,//48次
 			prizeNum: this.lotteryPrizenum,
+			lotterybg: this.lotteryBg,//外圈背景
+			contentbg: this.contentBg,//内容背景
+			pointerbg: this.pointerBg,//指针背景
+			lotterywidth: this.lotteryWidth
 		}
 	},
-	props: ['lotteryAngle',
-			'lotteryFlag',
-			'lotteryAcceleration',
-			'lotteryRacceleration',
-			'lotteryFirsttimes',
-			'lotteryPrizenum',
-			'lotteryPrizeno'
-		],
+	props: {
+		lotteryAngle: {
+			type: Number,
+			default: 0
+		},
+		lotteryFlag: {
+			type: Boolean,
+			default: true
+		},
+		lotteryPrizenum: {
+			type: Number,
+			required: true
+		},
+		lotteryPrizeno: {
+			type: Number,
+			required: true
+		},
+		lotteryBg: {
+			type: String
+		},
+		contentBg: {
+			type: String,
+			required: true
+		},
+		pointerBg: {
+			type: String,
+			required: true
+		},
+		lotteryWidth: {
+			type: Array,
+			default: function(){
+				return ["85%","35%"];
+			}
+		}
+	},
 	computed:{
 		difference(){
 			return (this.prizeNo / this.prizeNum) * 360 - 360 / this.prizeNum / 2;
@@ -45,7 +76,7 @@ export default {
 	},
 	methods:{
 		clickLottery(){
-			if(!this.flag){ return false; };
+			if(!this.flag){ return false;};
 			this.flag = false;
 			this.startRotate();
 		},
@@ -99,13 +130,11 @@ export default {
 
 <style lang="scss" scoped>
 	.wraper{
-		width: 300px;
 		position: relative;
 		img{
 			width: 100%;
 		}
 		.lotteryContent{
-			width: 85%;
 			position: absolute;
 			top: 50%;
 			left: 50%;
@@ -113,7 +142,6 @@ export default {
 			-webkit-transform: translate(-50%,-50%);
 		}
 		.pointer{
-			width: 35%;
 			position: absolute;
 			top: 50%;
 			left: 50%;

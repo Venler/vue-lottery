@@ -4,11 +4,12 @@
 			@lotteryDone = "lotteryDone"
 			:lottery-angle = "0"
 			:lottery-flag = "true"
-			:lottery-acceleration = "0.5"
-			:lottery-racceleration = "0.1"
-			:lottery-firsttimes = "48"
 			:lottery-prizenum = "prizeNum"
 			:lottery-prizeno = "prizeNo"
+			:lottery-bg = "lotterybg"
+			:content-bg = "contentbg"
+			:pointer-bg = "pointerbg"
+			:lottery-width = "lotteryWidth"
 		>
 		</lottery>
 	</div>
@@ -21,6 +22,10 @@ export default {
 		return {
 			prizeNo: 1,
 			prizeNum: 8,
+			lotteryWidth: ["85%","35%"],
+			lotterybg: require("./images/turnplate-bg.png"),
+			contentbg: require("./images/turntable.png"),
+			pointerbg: require("./images/pointer.png"),
 			prizeList: [
 				"200万里通积分",
 				"288元万里通积分红包",
