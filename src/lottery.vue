@@ -130,6 +130,7 @@ export default {
 
 <style lang="scss" scoped>
 	.wraper{
+		max-width: 500px;
 		position: relative;
 		img{
 			width: 100%;

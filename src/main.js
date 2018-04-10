@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import lottery from './lottery'
+import lottery from 'vue-lottery'
 
 Vue.use(lottery)
 new Vue({

@@ -42,7 +42,7 @@ export default {
 		lotteryDone(res){
 			let rodom = 1+ parseInt(Math.random()*this.prizeNum);
 			this.prizeNo = rodom;
-			console.log(this.prizeList[res.prizeNo-1]);
+			console.log(res);
 		}
 	}
 }
