@@ -11,6 +11,7 @@
 			:pointer-bg = "pointerbg"
 			:lottery-width = "lotteryWidth"
             @lotteryDisable = "lotteryDisable"
+            :lottery-scale = "prizeListScale"
 		>
 		</lottery>
 	</div>
@@ -36,6 +37,16 @@ export default {
 				"88元万里通积分红包",
 				"100万里通积分",
 				"888元万里通积分红包"
+			],
+			prizeListScale: [
+				1,
+				1,
+				1,
+				1,
+				1,
+				1,
+				1,
+				1
 			]
     	}
   	},

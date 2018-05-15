@@ -44,6 +44,7 @@ Vue.use("lottery")
 | lottery-flag | Boolean | 禁止点击 | 否 |
 | lotteryDone | Function | 旋转完成后的回调函数 | 否 |
 | lotteryDisable | Function | 禁用状态时点击后的回调函数 | 否 |
+| prizeListScale | Array | 从起点开始逆时针算，各奖项所占比例权重，如传入数量与奖品总数量不一致，异常 | 否 |
 
 
 
