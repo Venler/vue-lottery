@@ -19,8 +19,9 @@ Vue.use("lottery")
 
 ```
 <lottery 
+    @lotteryClick="lotteryClick"
     @lotteryDone = "lotteryDone"
-    :lottery-flag = "true"
+    :lottery-start = "0"
     :lottery-prizenum = "8"
     :lottery-prizeno = "1"
     :lottery-bg = "https://venler.github.io/demo/vue-lottery/dist/turnplate-bg.png"
@@ -40,8 +41,10 @@ Vue.use("lottery")
 | lottery-bg | String | 背景图 | 否 |
 | content-bg | String | 内容区域背景图 | 是 |
 | pointer-bg | String | 指针背景图 | 是 |
-| lottery-flag | Boolean | 禁止点击 | 否 |
+| lottery-start | Number | 0为停止，1为开始转动 | 否 |
 | lotteryDone | Function | 旋转完成后的回调函数 | 否 |
+| lotteryClick | Function | 点击抽奖按钮的回调 | 否 |
+| lottery-width | String | 内外圈间距百分比 | 否 |
 
 
 
