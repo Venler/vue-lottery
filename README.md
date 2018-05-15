@@ -27,6 +27,7 @@ Vue.use("lottery")
     :content-bg = "https://venler.github.io/demo/vue-lottery/dist/turntable.png"
     :pointer-bg = "https://venler.github.io/demo/vue-lottery/dist/pointer.png"
     :lottery-width = "[85%,35%]"
+    @lotteryDisable = "lotteryDisable"
 >
 </lottery>
 ```
@@ -42,6 +43,7 @@ Vue.use("lottery")
 | pointer-bg | String | 指针背景图 | 是 |
 | lottery-flag | Boolean | 禁止点击 | 否 |
 | lotteryDone | Function | 旋转完成后的回调函数 | 否 |
+| lotteryDisable | Function | 禁用状态时点击后的回调函数 | 否 |
 
 
 
