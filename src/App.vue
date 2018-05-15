@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<lottery 
+		<lottery
 			@lotteryDone = "lotteryDone"
 			:lottery-angle = "0"
 			:lottery-flag = "true"
@@ -10,6 +10,8 @@
 			:content-bg = "contentbg"
 			:pointer-bg = "pointerbg"
 			:lottery-width = "lotteryWidth"
+            @lotteryDisable = "lotteryDisable"
+            :lottery-scale = "prizeListScale"
 		>
 		</lottery>
 	</div>
@@ -35,6 +37,16 @@ export default {
 				"88元万里通积分红包",
 				"100万里通积分",
 				"888元万里通积分红包"
+			],
+			prizeListScale: [
+				1,
+				1,
+				1,
+				1,
+				1,
+				1,
+				1,
+				1
 			]
     	}
   	},
@@ -43,7 +55,10 @@ export default {
 			let rodom = 1+ parseInt(Math.random()*this.prizeNum);
 			this.prizeNo = rodom;
 			console.log(res);
-		}
+		},
+        lotteryDisable() {
+              console.log("lottert-flag为false时点击回调");
+        },
 	}
 }
 </script>

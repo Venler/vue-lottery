@@ -25,7 +25,8 @@ export default {
 			lotterybg: this.lotteryBg,//外圈背景
 			contentbg: this.contentBg,//内容背景
 			pointerbg: this.pointerBg,//指针背景
-			lotterywidth: this.lotteryWidth
+			lotterywidth: this.lotteryWidth,
+            lotteryScaleCenter: []//各奖品转盘中心点位置计算
 		}
 	},
 	props: {
@@ -61,22 +62,62 @@ export default {
 			default: function(){
 				return ["85%","35%"];
 			}
+		},
+        lotteryScale: {
+            type: Array,
+            default: function(){
+                return [];
+            }
 		}
 	},
 	computed:{
 		difference(){
-			return (this.prizeNo / this.prizeNum) * 360 - 360 / this.prizeNum / 2;
+      /**
+       * 计算中奖中间值
+       */
+			return this.lotteryScaleCenter[this.prizeNo - 1];
 		},
 		prizeNo(){
 			return this.lotteryPrizeno
 		}
 	},
 	mounted(){
-		
+      /**
+       * 根据几率计算所有中奖项目的中间值
+       */
+      debugger
+      if (this.lotteryScale.length === 0) {
+        //没传概率，平均分
+        for(let i = 1; i <= this.prizeNum; i++) {
+          this.lotteryScaleCenter.push((i / this.prizeNum) * 360 - 360 / this.prizeNum / 2);
+        }
+      } else if (this.lotteryScale.length !== this.prizeNum) {
+        //传入概率与奖品个数不符合
+        throw "传入概率与奖品个数不符合,请检查!"
+      } else {
+        //算出总概率
+        const globalScale = eval(this.lotteryScale.join("+"));
+
+        this.lotteryScale.forEach((gift, index) => {
+
+          // 計算角度(全部資料機率 / 單片機率 * 360)
+          const deg = (gift / globalScale) * 360;
+
+          const from= index === 0 ? 0 : this.lotteryScaleCenter[index - 1] + ((this.lotteryScale[index - 1] / globalScale) * 360  / 2);
+          const to= index === 0 ? deg : this.lotteryScaleCenter[index - 1] + deg + ((this.lotteryScale[index - 1] / globalScale) * 360  / 2);
+
+          this.lotteryScaleCenter.push((from+to)/2);
+
+        });
+
+      }
 	},
 	methods:{
 		clickLottery(){
-			if(!this.flag){ return false;};
+			if(!this.flag){
+			  this.$emit("lotteryDisable");
+			  return false;
+			}
 			this.flag = false;
 			this.startRotate();
 		},
@@ -104,7 +145,7 @@ export default {
 					self.angle += speed;
 				}
 				else if(self.angle.toFixed(2) == twoAngel.toFixed(2)){
-					self.angle += add; 
+					self.angle += add;
 				}
 				else if(self.angle > twoAngel && self.angle <= threeAngel){
 					speed -= r_acceleration;
