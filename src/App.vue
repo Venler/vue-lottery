@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<lottery 
+		<lottery
 			@lotteryDone = "lotteryDone"
 			:lottery-angle = "0"
 			:lottery-flag = "true"
@@ -10,6 +10,7 @@
 			:content-bg = "contentbg"
 			:pointer-bg = "pointerbg"
 			:lottery-width = "lotteryWidth"
+            @lotteryDisable = "lotteryDisable"
 		>
 		</lottery>
 	</div>
@@ -43,7 +44,10 @@ export default {
 			let rodom = 1+ parseInt(Math.random()*this.prizeNum);
 			this.prizeNo = rodom;
 			console.log(res);
-		}
+		},
+        lotteryDisable() {
+              console.log("lottert-flag为false时点击回调");
+        },
 	}
 }
 </script>

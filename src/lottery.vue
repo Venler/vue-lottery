@@ -72,11 +72,14 @@ export default {
 		}
 	},
 	mounted(){
-		
+
 	},
 	methods:{
 		clickLottery(){
-			if(!this.flag){ return false;};
+			if(!this.flag){
+			  this.$emit("lotteryDisable");
+			  return false;
+			}
 			this.flag = false;
 			this.startRotate();
 		},
@@ -104,7 +107,7 @@ export default {
 					self.angle += speed;
 				}
 				else if(self.angle.toFixed(2) == twoAngel.toFixed(2)){
-					self.angle += add; 
+					self.angle += add;
 				}
 				else if(self.angle > twoAngel && self.angle <= threeAngel){
 					speed -= r_acceleration;
