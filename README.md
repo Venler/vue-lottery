@@ -12,22 +12,22 @@ npm install vue-lottery --save
 
 ```
 import lottery from "vue-lottery"
-Vue.use("lottery")
+Vue.use(lottery)
 ```
 
 ## 调用示例
 
 ```
-<lottery 
+<lottery
     @lotteryClick="lotteryClick"
     @lotteryDone = "lotteryDone"
     :lottery-start = "0"
     :lottery-prizenum = "8"
     :lottery-prizeno = "1"
-    :lottery-bg = "https://venler.github.io/demo/vue-lottery/dist/turnplate-bg.png"
-    :content-bg = "https://venler.github.io/demo/vue-lottery/dist/turntable.png"
-    :pointer-bg = "https://venler.github.io/demo/vue-lottery/dist/pointer.png"
-    :lottery-width = "[85%,35%]"
+    lottery-bg = "https://venler.github.io/demo/vue-lottery/dist/turnplate-bg.png"
+    content-bg = "https://venler.github.io/demo/vue-lottery/dist/turntable.png"
+    pointer-bg = "https://venler.github.io/demo/vue-lottery/dist/pointer.png"
+    :lottery-width = "['85%','35%']"
 >
 </lottery>
 ```
